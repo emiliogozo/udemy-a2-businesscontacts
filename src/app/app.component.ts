@@ -22,11 +22,11 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this._firebaseService.getBusinesses().subscribe(businesses => {
       this.businesses = businesses;
-    })
+    });
 
     this._firebaseService.getCategories().subscribe(categories => {
       this.categories = categories;
-    })
+    });
   }
 
   changeState(state, key) {
@@ -36,5 +36,11 @@ export class AppComponent implements OnInit {
       this.activeKey = key;
     }
     this.appState = state;
+  }
+
+  filterCategory(category) {
+    this._firebaseService.getBusinesses(category).subscribe(businesses => {
+      this.businesses = businesses;
+    });
   }
 }
